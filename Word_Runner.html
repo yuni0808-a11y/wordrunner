@@ -11,8 +11,51 @@
 body{
   background:#000;
   margin:0;padding:0;
-  display:flex;align-items:center;justify-content:center;
-  width:100vw;height:100vh;overflow:hidden;
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  overflow:hidden;
+  user-select:none;-webkit-user-select:none;
+}
+canvas{
+  display:block;border-radius:0;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div id="qr-tmp" style="position:fixed;left:-9999px;top:-9999px;"></div>
+<canvas id="c" width="800" height="480"></canvas>
+<script></script>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Nanum+Square:wght@400;700;800&family=Nunito:wght@800;900&family=Noto+Sans+KR:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#000;
+  margin:0;padding:0;
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  overflow:hidden;
+  user-select:none;-webkit-user-select:none;
+}
+canvas{
+  display:block;border-radius:0;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div id="qr-tmp" style="position:fixed;left:-9999px;top:-9999px;"></div>
+<canvas id="c" width="800" height="480"></canvas>
+<script></script>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Nanum+Square:wght@400;700;800&family=Nunito:wght@800;900&family=Noto+Sans+KR:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#000;
+  margin:0;padding:0;
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  overflow:hidden;
   user-select:none;-webkit-user-select:none;
 }
 canvas{
@@ -67,130 +110,9 @@ const EM = {
   dream:'💭',future:'🔮',office:'🏢',catch:'🫳',throw:'🏈',
   leaf:'🍃',candy:'🍬',store:'🏪',
   truck:'🚛',plane:'✈️',ship:'🚢',
-};;
+};
 // Extended semantic emoji map
-Object.assign(EM,{
-about:'💭',again:'🔄',all:'✨',animal:'🐾',aunt:'👩',australia:'🦘',
-bad:'👎',bake:'🧁',be:'✨',beautiful:'🌸',because:'💭',bed:'🛏️',
-beef:'🥩',behind:'⬅️',between:'↔️',big:'🔵',bigger:'⬆️',block:'🧱',
-box:'📦',brazil:'🌎',breakfast:'🍳',bright:'💡',bring:'🤲',brown:'🟤',
-brush:'🪥',busy:'⏰',buy:'🛍️',can:'🥫',care:'💝',chair:'🪑',
-cheap:'💰',china:'🐉',class:'🏫',classroom:'🏫',clean:'🧹',climb:'🧗',
-close:'🚪',clothing:'👕',club:'🎭',color:'🎨',colorful:'🌈',come:'🚶',
-cool:'😎',corner:'📐',cup:'☕',curly:'〰️',cute:'🥰',dance:'💃',
-daughter:'👧',day:'☀️',delicious:'😋',desk:'📋',dinner:'🍽️',do:'✅',
-door:'🚪',down:'⬇️',draw:'🎨',drink:'🥤',eat:'🍽️',eight:'8️⃣',
-exercise:'🏋️',fan:'🌀',fast:'⚡',faster:'⚡',favorite:'⭐',feel:'🫀',
-fifth:'5️⃣',film:'🎬',fine:'😊',first:'🥇',fishing:'🎣',five:'5️⃣',
-floor:'🏢',fly:'✈️',four:'4️⃣',fourth:'4️⃣',france:'🗼',front:'➡️',
-full:'😋',fun:'🎉',game:'🎮',get:'✋',go:'🏃',good:'👍',grade:'📊',
-great:'🌟',habit:'📅',have:'✋',he:'👦',help:'🤝',here:'📍',
-hiking:'🥾',homework:'📝',how:'❓',hundred:'💯',hurry:'🏃',in:'📦',
-india:'🕌',ink:'🖊️',invite:'💌',it:'📦',join:'🤝',jump:'🦘',
-kenya:'🌍',kick:'🦶',kilogram:'⚖️',kind:'💝',kite:'🪁',korea:'🇰🇷',
-land:'🌍',late:'⏰',learn:'💡',left:'⬅️',let:'✅',light:'💡',
-like:'👍',line:'📏',lip:'👄',listen:'🎧',long:'📏',longer:'📏',
-look:'👀',lunch:'🥪',make:'🔨',many:'🔢',meet:'🤝',month:'📅',
-more:'➕',movie:'🎬',much:'🔢',name:'📛',news:'📰',nice:'😊',
-nine:'9️⃣',not:'❌',now:'⏱️',number:'🔢',often:'🔄',okay:'👍',
-old:'👴',on:'⬆️',once:'1️⃣',one:'1️⃣',open:'🔓',out:'🚪',
-outside:'🌳',palace:'🏯',people:'👥',picture:'🖼️',place:'📍',
-play:'🎮',please:'🙏',pretty:'🌸',prince:'👑',push:'🫱',queen:'👑',
-restroom:'🚻',reuse:'♻️',ride:'🚲',right:'➡️',run:'🏃',salty:'🧂',
-save:'🦺',second:'2️⃣',see:'👀',sell:'🏪',seven:'7️⃣',she:'👧',
-shopping:'🛍️',short:'📏',sing:'🎤',sit:'🪑',six:'6️⃣',sixth:'6️⃣',
-skate:'⛸️',ski:'🎿',sky:'🌤️',sleepy:'😴',small:'🔵',so:'➡️',
-some:'🔢',song:'🎵',sorry:'😔',sound:'🔊',sour:'🍋',spell:'✏️',
-stand:'🧍',stay:'🏠',stone:'🪨',stop:'🛑',straight:'⬆️',stronger:'💪',
-sure:'✅',sweater:'🧥',sweet:'🍬',swim:'🏊',table:'🪑',talk:'💬',
-tall:'🗼',taller:'🗼',tape:'📼',ten:'🔟',thank:'🙏',that:'👉',
-there:'📍',think:'💭',third:'3️⃣',this:'👈',thousand:'💯',three:'3️⃣',
-time:'⏰',today:'📅',together:'🤝',toothbrush:'🪥',top:'⬆️',touch:'✋',
-traditional:'🏛️',travel:'✈️',trip:'🗺️',try:'💪',twice:'2️⃣',two:'2️⃣',
-uncle:'👨',under:'⬇️',up:'⬆️',use:'🔧',vegetable:'🥦',vietnam:'🌿',
-visit:'🗺️',voice:'🎤',wait:'⏳',want:'🙋',warm:'☀️',watch:'⌚',
-weather:'🌤️',week:'📅',welcome:'👋',well:'✅',what:'❓',where:'📍',
-who:'👤',whose:'👤',win:'🏆',wish:'⭐',won:'💵',work:'💼',worry:'😰',
-wrong:'❌',year:'🗓️',yes:'✅',yesterday:'📅',you:'👤',zoo:'🦁',
-bottle:'🍾',paper:'📄',glass:'🥛',cook:'👨‍🍳',late:'⏰',day:'☀️',
-bottle:'🍾',can:'🥫',reuse:'♻️',recycle:'♻️',museum:'🏛️',soccer:'⚽',korea:'🇰🇷',ball:'⚽',painter:'🎨',violin:'🎻',cello:'🎻',flute:'🪈',trumpet:'🎺',harp:'🎸',gym:'🏋️',pool:'🏊',track:'🏃',field:'⚽',court:'🏸',librarian:'📚',janitor:'🧹',principal:'👔',coach:'🏆',tutor:'📖',pilot:'✈️',driver:'🚗',baker:'🍞',butcher:'🥩',plumber:'🔧',carpenter:'🪚',electrician:'⚡',firefighter:'🚒',lifeguard:'🏊',referee:'🏅',umpire:'⚾'
-});
 
-Object.assign(EM,{
-// 스포츠/체육
-'hungry':'🍽️','thirsty':'💧','full':'😋','full':'😋','ball':'⚽','basketball':'🏀','baseball':'⚾','volleyball':'🏐','football':'🏈',
-'tennis':'🎾','badminton':'🏸','bowling':'🎳','golf':'⛳','boxing':'🥊',
-'skating':'⛸️','skiing':'🎿','cycling':'🚴','swimming':'🏊','jogging':'🏃',
-'marathon':'🏃','gymnastics':'🤸','yoga':'🧘','wrestling':'🤼','archery':'🏹',
-'rowing':'🚣','surfing':'🏄','diving':'🤿','climbing':'🧗','hiking':'🥾',
-// 악기
-'drum':'🥁','violin':'🎻','guitar':'🎸','piano':'🎹','trumpet':'🎺',
-'recorder':'🎵','flute':'🪈','cello':'🎻','harp':'🎸','keyboard':'🎹',
-'ukulele':'🪕','saxophone':'🎷','clarinet':'🎵','oboe':'🎵','tuba':'🎺',
-// 학용품/학교
-'pencil':'✏️','eraser':'🩹','ruler':'📏','scissors':'✂️','glue':'🧴',
-'paint':'🎨','brush':'🖌️','crayon':'🖍️','chalk':'🪢','textbook':'📚',
-'notebook':'📓','pen':'🖊️','marker':'🖊️','tape':'📼','compass':'🧭',
-// 학교 장소
-'library':'📚','playground':'🛝','gym':'🏋️','cafeteria':'🍽️','bathroom':'🚻',
-'office':'🏢','laboratory':'🔬','auditorium':'🎭','hallway':'🚪',
-// 과목
-'math':'📐','science':'🔬','history':'📜','geography':'🌍','music':'🎵',
-'art':'🎨','english':'📖','korean':'🇰🇷','chinese':'🇨🇳','japanese':'🇯🇵',
-'pe':'🏃','health':'❤️','ethics':'📖','social':'👥','computer':'💻',
-// 직업
-'teacher':'👩‍🏫','student':'👨‍🎓','doctor':'👨‍⚕️','nurse':'👩‍⚕️','police':'👮',
-'soldier':'💂','farmer':'👨‍🌾','chef':'👨‍🍳','waiter':'🧑‍🍳','cashier':'💰',
-'pilot':'✈️','driver':'🚗','engineer':'⚙️','scientist':'🔬','artist':'🎨',
-'musician':'🎵','actor':'🎭','singer':'🎤','dancer':'💃','writer':'✍️',
-'reporter':'📰','photographer':'📷','designer':'🎨','programmer':'💻',
-'mechanic':'🔧','electrician':'⚡','plumber':'🔧','carpenter':'🪚',
-'firefighter':'🚒','lifeguard':'🏊','coach':'🏆','librarian':'📚',
-'principal':'👔','janitor':'🧹','guard':'💂','manager':'👔',
-// 동물 추가
-'parrot':'🦜','hamster':'🐹','rabbit':'🐰','guinea':'🐹','turtle':'🐢',
-'lizard':'🦎','snake':'🐍','frog':'🐸','bear':'🐻','panda':'🐼',
-'koala':'🐨','penguin':'🐧','flamingo':'🦩','peacock':'🦚','eagle':'🦅',
-'owl':'🦉','bat':'🦇','deer':'🦌','fox':'🦊','wolf':'🐺',
-'elephant':'🐘','giraffe':'🦒','zebra':'🦓','hippo':'🦛','rhino':'🦏',
-'kangaroo':'🦘','crocodile':'🐊','dolphin':'🐬','whale':'🐳','octopus':'🐙',
-'crab':'🦀','lobster':'🦞','shrimp':'🍤','snail':'🐌','butterfly':'🦋',
-'bee':'🐝','ant':'🐜','spider':'🕷️','worm':'🪱',
-// 음식 추가
-'sandwich':'🥪','hamburger':'🍔','hotdog':'🌭','pizza':'🍕','pasta':'🍝',
-'noodle':'🍜','noodles':'🍜','dumpling':'🥟','sushi':'🍣','steak':'🥩',
-'turkey':'🦃','ham':'🍖','bacon':'🥓','egg':'🥚','eggs':'🥚',
-'butter':'🧈','cheese':'🧀','yogurt':'🥛','cream':'🍦','pudding':'🍮',
-'cookie':'🍪','cake':'🎂','pie':'🥧','donut':'🍩','candy':'🍬',
-'chocolate':'🍫','ice':'🧊','lemon':'🍋','lime':'🍋','coconut':'🥥',
-'avocado':'🥑','broccoli':'🥦','carrot':'🥕','corn':'🌽','mushroom':'🍄',
-'onion':'🧅','garlic':'🧄','pepper':'🌶️','tomato':'🍅','potato':'🥔',
-'eggplant':'🍆','pumpkin':'🎃','cucumber':'🥒','salad':'🥗','soup':'🍲',
-// 장소/건물
-'museum':'🏛️','hospital':'🏥','hotel':'🏨','mall':'🏬','market':'🛒',
-'bakery':'🍞','restaurant':'🍽️','cafe':'☕','bank':'🏦','church':'⛪',
-'temple':'🏯','mosque':'🕌','palace':'🏯','castle':'🏰','bridge':'🌉',
-'tunnel':'🚇','airport':'✈️','port':'⚓','harbor':'⚓','dock':'⚓',
-'farm':'🌾','factory':'🏭','office':'🏢','theater':'🎭','cinema':'🎬',
-'concert':'🎵','stadium':'🏟️','pool':'🏊','track':'🏃','court':'🏸',
-// 교통
-'subway':'🚇','tram':'🚊','cable':'🚡','ferry':'⛴️','speedboat':'🚤',
-'canoe':'🛶','helicopter':'🚁','rocket':'🚀','spaceship':'🚀',
-'scooter':'🛵','skateboard':'🛹','rollerblade':'⛸️',
-// 기타
-'magazine':'📰','comic':'📕','novel':'📗','poem':'📜','dictionary':'📖',
-'alphabet':'🔤','word':'💬','sentence':'📝','paragraph':'📄','story':'📖',
-'test':'📝','exam':'📝','quiz':'📝','homework':'📚','project':'📋',
-'report':'📊','presentation':'📊','speech':'🎤','debate':'🗣️','discussion':'💬',
-'experiment':'🔬','research':'🔍','discovery':'💡','invention':'⚙️','idea':'💡',
-'question':'❓','answer':'✅','correct':'✅','wrong':'❌','score':'🏆',
-'grade':'📊','pass':'✅','fail':'❌','absent':'❌','present':'✅',
-// 자연
-'tornado':'🌪️','hurricane':'🌀','tsunami':'🌊','earthquake':'💥','volcano':'🌋',
-'avalanche':'❄️','flood':'🌊','drought':'☀️','wildfire':'🔥','landslide':'⛰️',
-'lightning':'⚡','thunder':'⚡','rainbow':'🌈','fog':'🌫️','mist':'🌫️',
-'dew':'💧','frost':'❄️','hail':'🌨️','sleet':'🌧️','blizzard':'❄️',
-});
 
 const DB = {"3학년|1단원":[{"word":"hi","ko":"안녕","pron":"/haɪ/","pos":"감탄사"},{"word":"hello","ko":"안녕하세요","pron":"/həˈloʊ/","pos":"감탄사"},{"word":"goodbye","ko":"안녕히 가세요","pron":"/ˌɡʊdˈbaɪ/","pos":"감탄사"},{"word":"what","ko":"무엇","pron":"/wʌt/","pos":"의문사"},{"word":"be","ko":"~이다","pron":"/biː/","pos":"동사"},{"word":"you","ko":"너","pron":"/juː/","pos":"대명사"},{"word":"name","ko":"이름","pron":"/neɪm/","pos":"명사"},{"word":"apple","ko":"사과","pron":"/ˈæpəl/","pos":"명사"},{"word":"ball","ko":"공","pron":"/bɔːl/","pos":"명사"},{"word":"cat","ko":"고양이","pron":"/kæt/","pos":"명사"},{"word":"dog","ko":"강아지","pron":"/dɔːɡ/","pos":"명사"}],"3학년|2단원":[{"word":"this","ko":"이것","pron":"/ðɪs/","pos":"대명사"},{"word":"that","ko":"저것","pron":"/ðæt/","pos":"대명사"},{"word":"it","ko":"그것","pron":"/ɪt/","pos":"대명사"},{"word":"doll","ko":"인형","pron":"/dɑːl/","pos":"명사"},{"word":"pen","ko":"펜","pron":"/pen/","pos":"명사"},{"word":"look","ko":"보다","pron":"/lʊk/","pos":"동사"},{"word":"book","ko":"책","pron":"/bʊk/","pos":"명사"},{"word":"tape","ko":"테이프","pron":"/teɪp/","pos":"명사"},{"word":"map","ko":"지도","pron":"/mæp/","pos":"명사"},{"word":"egg","ko":"달걀","pron":"/eɡ/","pos":"명사"},{"word":"fish","ko":"물고기","pron":"/fɪʃ/","pos":"명사"},{"word":"go","ko":"가다","pron":"/ɡoʊ/","pos":"동사"},{"word":"hat","ko":"모자","pron":"/hæt/","pos":"명사"}],"3학년|3단원":[{"word":"sit","ko":"앉다","pron":"/sɪt/","pos":"동사"},{"word":"down","ko":"아래로","pron":"/daʊn/","pos":"부사"},{"word":"jump","ko":"점프","pron":"/dʒʌmp/","pos":"동사"},{"word":"good","ko":"좋은","pron":"/ɡʊd/","pos":"형용사"},{"word":"please","ko":"부탁해요","pron":"/pliːz/","pos":"부사"},{"word":"open","ko":"열다","pron":"/ˈoʊpən/","pos":"동사"},{"word":"door","ko":"문","pron":"/dɔːr/","pos":"명사"},{"word":"stand","ko":"서다","pron":"/stænd/","pos":"동사"},{"word":"up","ko":"위로","pron":"/ʌp/","pos":"부사"},{"word":"great","ko":"훌륭한","pron":"/ɡreɪt/","pos":"형용사"},{"word":"come","ko":"오다","pron":"/kʌm/","pos":"동사"},{"word":"here","ko":"여기","pron":"/hɪr/","pos":"부사"},{"word":"close","ko":"닫다","pron":"/kloʊz/","pos":"동사"},{"word":"there","ko":"저기","pron":"/ðer/","pos":"부사"},{"word":"okay","ko":"괜찮아","pron":"/oʊˈkeɪ/","pos":"감탄사"},{"word":"ink","ko":"잉크","pron":"/ɪŋk/","pos":"명사"},{"word":"kite","ko":"연","pron":"/kaɪt/","pos":"명사"},{"word":"lemon","ko":"레몬","pron":"/ˈlemən/","pos":"명사"}],"3학년|4단원":[{"word":"do","ko":"하다","pron":"/duː/","pos":"동사"},{"word":"like","ko":"좋아하다","pron":"/laɪk/","pos":"동사"},{"word":"yes","ko":"네","pron":"/jes/","pos":"감탄사"},{"word":"not","ko":"아니다","pron":"/nɑːt/","pos":"부사"},{"word":"panda","ko":"판다","pron":"/ˈpændə/","pos":"명사"},{"word":"tiger","ko":"호랑이","pron":"/ˈtaɪɡər/","pos":"명사"},{"word":"bird","ko":"새","pron":"/bɜːrd/","pos":"명사"},{"word":"pig","ko":"돼지","pron":"/pɪɡ/","pos":"명사"},{"word":"duck","ko":"오리","pron":"/dʌk/","pos":"명사"},{"word":"horse","ko":"말","pron":"/hɔːrs/","pos":"명사"},{"word":"lion","ko":"사자","pron":"/ˈlaɪən/","pos":"명사"},{"word":"monkey","ko":"원숭이","pron":"/ˈmʌŋki/","pos":"명사"},{"word":"mom","ko":"엄마","pron":"/mɑːm/","pos":"명사"},{"word":"orange","ko":"오렌지","pron":"/ˈɔːrɪndʒ/","pos":"명사"}],"3학년|5단원":[{"word":"many","ko":"많은","pron":"/ˈmeni/","pos":"관형사"},{"word":"kiwi","ko":"키위","pron":"/ˈkiːwiː/","pos":"명사"},{"word":"banana","ko":"바나나","pron":"/bəˈnænə/","pos":"명사"},{"word":"tomato","ko":"토마토","pron":"/təˈmeɪtoʊ/","pos":"명사"},{"word":"potato","ko":"감자","pron":"/pəˈteɪtoʊ/","pos":"명사"},{"word":"carrot","ko":"당근","pron":"/ˈkærət/","pos":"명사"},{"word":"one","ko":"하나","pron":"/wʌn/","pos":"수사"},{"word":"two","ko":"둘","pron":"/tuː/","pos":"수사"},{"word":"three","ko":"셋","pron":"/θriː/","pos":"수사"},{"word":"four","ko":"넷","pron":"/fɔːr/","pos":"수사"},{"word":"five","ko":"다섯","pron":"/faɪv/","pos":"수사"},{"word":"thank","ko":"감사하다","pron":"/θæŋk/","pos":"동사"},{"word":"six","ko":"여섯","pron":"/sɪks/","pos":"수사"},{"word":"how","ko":"어떻게","pron":"/haʊ/","pos":"의문사"},{"word":"queen","ko":"여왕","pron":"/kwiːn/","pos":"명사"},{"word":"run","ko":"달리다","pron":"/rʌn/","pos":"동사"},{"word":"sun","ko":"태양","pron":"/sʌn/","pos":"명사"}],"3학년|6단원":[{"word":"color","ko":"색깔","pron":"/ˈkʌlər/","pos":"명사"},{"word":"white","ko":"하얀","pron":"/waɪt/","pos":"형용사"},{"word":"red","ko":"빨간","pron":"/red/","pos":"형용사"},{"word":"blue","ko":"파란","pron":"/bluː/","pos":"형용사"},{"word":"green","ko":"초록","pron":"/ɡriːn/","pos":"형용사"},{"word":"purple","ko":"보라","pron":"/ˈpɜːrpəl/","pos":"형용사"},{"word":"black","ko":"검정","pron":"/blæk/","pos":"형용사"},{"word":"yellow","ko":"노란","pron":"/ˈjeloʊ/","pos":"형용사"},{"word":"about","ko":"~에 대해","pron":"/əˈbaʊt/","pos":"전치사"},{"word":"violin","ko":"바이올린","pron":"/ˌvaɪəˈlɪn/","pos":"명사"},{"word":"wind","ko":"바람","pron":"/wɪnd/","pos":"명사"},{"word":"box","ko":"상자","pron":"/bɑːks/","pos":"명사"},{"word":"zoo","ko":"동물원","pron":"/zuː/","pos":"명사"}],"3학년|7단원":[{"word":"can","ko":"할 수 있다","pron":"/kæn/","pos":"조동사"},{"word":"swim","ko":"수영하다","pron":"/swɪm/","pos":"동사"},{"word":"dance","ko":"춤추다","pron":"/dæns/","pos":"동사"},{"word":"skate","ko":"스케이트 타다","pron":"/skeɪt/","pos":"동사"},{"word":"ski","ko":"스키 타다","pron":"/skiː/","pos":"동사"},{"word":"sorry","ko":"미안해요","pron":"/ˈsɑːri/","pos":"감탄사"},{"word":"so","ko":"그래서","pron":"/soʊ/","pos":"접속사"},{"word":"climb","ko":"오르다","pron":"/klaɪm/","pos":"동사"},{"word":"fast","ko":"빠른","pron":"/fæst/","pos":"형용사"},{"word":"well","ko":"잘","pron":"/wel/","pos":"부사"}],"3학년|8단원":[{"word":"have","ko":"가지다","pron":"/hæv/","pos":"동사"},{"word":"notebook","ko":"공책","pron":"/ˈnoʊtbʊk/","pos":"명사"},{"word":"eraser","ko":"지우개","pron":"/ɪˈreɪsər/","pos":"명사"},{"word":"pencil","ko":"연필","pron":"/ˈpensəl/","pos":"명사"},{"word":"ruler","ko":"자","pron":"/ˈruːlər/","pos":"명사"},{"word":"cake","ko":"케이크","pron":"/keɪk/","pos":"명사"},{"word":"glue","ko":"풀","pron":"/ɡluː/","pos":"명사"}],"3학년|9단원":[{"word":"who","ko":"누구","pron":"/huː/","pos":"의문사"},{"word":"she","ko":"그녀","pron":"/ʃiː/","pos":"대명사"},{"word":"he","ko":"그","pron":"/hiː/","pos":"대명사"},{"word":"dad","ko":"아빠","pron":"/dæd/","pos":"명사"},{"word":"sister","ko":"언니/여동생","pron":"/ˈsɪstər/","pos":"명사"},{"word":"brother","ko":"형/남동생","pron":"/ˈbrʌðər/","pos":"명사"},{"word":"tall","ko":"키가 큰","pron":"/tɔːl/","pos":"형용사"},{"word":"pretty","ko":"예쁜","pron":"/ˈprɪti/","pos":"형용사"},{"word":"cute","ko":"귀여운","pron":"/kjuːt/","pos":"형용사"},{"word":"bee","ko":"꿀벌","pron":"/biː/","pos":"명사"},{"word":"beef","ko":"쇠고기","pron":"/biːf/","pos":"명사"},{"word":"cool","ko":"멋진","pron":"/kuːl/","pos":"형용사"},{"word":"family","ko":"가족","pron":"/ˈfæməli/","pos":"명사"},{"word":"prince","ko":"왕자","pron":"/prɪns/","pos":"명사"}],"3학년|10단원":[{"word":"touch","ko":"만지다","pron":"/tʌtʃ/","pos":"동사"},{"word":"eat","ko":"먹다","pron":"/iːt/","pos":"동사"},{"word":"watch","ko":"보다","pron":"/wɑːtʃ/","pos":"동사"},{"word":"out","ko":"밖으로","pron":"/aʊt/","pos":"부사"},{"word":"push","ko":"밀다","pron":"/pʊʃ/","pos":"동사"},{"word":"talk","ko":"말하다","pron":"/tɔːk/","pos":"동사"},{"word":"bike","ko":"자전거","pron":"/baɪk/","pos":"명사"},{"word":"fire","ko":"불","pron":"/ˈfaɪər/","pos":"명사"},{"word":"lip","ko":"입술","pron":"/lɪp/","pos":"명사"},{"word":"run","ko":"달리다","pron":"/rʌn/","pos":"동사"}],"3학년|11단원":[{"word":"how","ko":"어떻게","pron":"/haʊ/","pos":"의문사"},{"word":"old","ko":"나이든","pron":"/oʊld/","pos":"형용사"},{"word":"year","ko":"해/년","pron":"/jɪr/","pos":"명사"},{"word":"happy","ko":"행복한","pron":"/ˈhæpi/","pos":"형용사"},{"word":"birthday","ko":"생일","pron":"/ˈbɜːrθdeɪ/","pos":"명사"},{"word":"fox","ko":"여우","pron":"/fɑːks/","pos":"명사"},{"word":"nose","ko":"코","pron":"/noʊz/","pos":"명사"},{"word":"stop","ko":"멈추다","pron":"/stɑːp/","pos":"동사"},{"word":"seven","ko":"일곱","pron":"/ˈsevən/","pos":"수사"},{"word":"eight","ko":"여덟","pron":"/eɪt/","pos":"수사"},{"word":"nine","ko":"아홉","pron":"/naɪn/","pos":"수사"},{"word":"ten","ko":"열","pron":"/ten/","pos":"수사"}],"3학년|12단원":[{"word":"weather","ko":"날씨","pron":"/ˈweðər/","pos":"명사"},{"word":"sunny","ko":"맑은","pron":"/ˈsʌni/","pos":"형용사"},{"word":"snowing","ko":"눈이 내리는","pron":"/ˈsnoʊɪŋ/","pos":"형용사"},{"word":"raining","ko":"비가 내리는","pron":"/ˈreɪnɪŋ/","pos":"형용사"},{"word":"outside","ko":"바깥","pron":"/ˈaʊtsaɪd/","pos":"부사"},{"word":"let","ko":"허락하다","pron":"/let/","pos":"동사"},{"word":"hot","ko":"더운","pron":"/hɑːt/","pos":"형용사"},{"word":"cold","ko":"추운/감기","pron":"/koʊld/","pos":"형용사"},{"word":"windy","ko":"바람 부는","pron":"/ˈwɪndi/","pos":"형용사"}],"4학년|1단원":[{"word":"how","ko":"어떻게","pron":"/haʊ/","pos":"의문사"},{"word":"fine","ko":"좋은","pron":"/faɪn/","pos":"형용사"},{"word":"good","ko":"좋은","pron":"/ɡʊd/","pos":"형용사"},{"word":"great","ko":"훌륭한","pron":"/ɡreɪt/","pos":"형용사"},{"word":"afternoon","ko":"오후","pron":"/ˌæftərˈnuːn/","pos":"명사"},{"word":"evening","ko":"저녁","pron":"/ˈiːvnɪŋ/","pos":"명사"},{"word":"night","ko":"밤","pron":"/naɪt/","pos":"명사"},{"word":"bad","ko":"나쁜","pron":"/bæd/","pos":"형용사"},{"word":"morning","ko":"아침","pron":"/ˈmɔːrnɪŋ/","pos":"명사"}],"4학년|2단원":[{"word":"friend","ko":"친구","pron":"/frend/","pos":"명사"},{"word":"grandma","ko":"할머니","pron":"/ˈɡrænmɑː/","pos":"명사"},{"word":"grandpa","ko":"할아버지","pron":"/ˈɡrænpɑː/","pos":"명사"},{"word":"nice","ko":"친절한","pron":"/naɪs/","pos":"형용사"},{"word":"meet","ko":"만나다","pron":"/miːt/","pos":"동사"},{"word":"teacher","ko":"선생님","pron":"/ˈtiːtʃər/","pos":"명사"},{"word":"uncle","ko":"삼촌","pron":"/ˈʌŋkəl/","pos":"명사"},{"word":"cool","ko":"멋진","pron":"/kuːl/","pos":"형용사"},{"word":"feel","ko":"느끼다","pron":"/fiːl/","pos":"동사"},{"word":"kind","ko":"친절한","pron":"/kaɪnd/","pos":"형용사"}],"4학년|3단원":[{"word":"tired","ko":"피곤한","pron":"/ˈtaɪərd/","pos":"형용사"},{"word":"hungry","ko":"배고픈","pron":"/ˈhʌŋɡri/","pos":"형용사"},{"word":"angry","ko":"화난","pron":"/ˈæŋɡri/","pos":"형용사"},{"word":"sad","ko":"슬픈","pron":"/sæd/","pos":"형용사"},{"word":"thirsty","ko":"목마른","pron":"/ˈθɜːrsti/","pos":"형용사"},{"word":"help","ko":"돕다","pron":"/help/","pos":"동사"},{"word":"work","ko":"일하다","pron":"/wɜːrk/","pos":"동사"},{"word":"now","ko":"지금","pron":"/naʊ/","pos":"부사"},{"word":"worry","ko":"걱정하다","pron":"/ˈwɜːri/","pos":"동사"},{"word":"okay","ko":"괜찮아","pron":"/oʊˈkeɪ/","pos":"감탄사"}],"4학년|4단원":[{"word":"cap","ko":"모자","pron":"/kæp/","pos":"명사"},{"word":"shoe","ko":"신발","pron":"/ʃuː/","pos":"명사"},{"word":"jacket","ko":"재킷","pron":"/ˈdʒækɪt/","pos":"명사"},{"word":"bag","ko":"가방","pron":"/bæɡ/","pos":"명사"},{"word":"green","ko":"초록","pron":"/ɡriːn/","pos":"형용사"},{"word":"yellow","ko":"노란","pron":"/ˈjeloʊ/","pos":"형용사"},{"word":"red","ko":"빨간","pron":"/red/","pos":"형용사"},{"word":"blue","ko":"파란","pron":"/bluː/","pos":"형용사"}],"4학년|5단원":[{"word":"where","ko":"어디","pron":"/wer/","pos":"의문사"},{"word":"under","ko":"아래에","pron":"/ˈʌndər/","pos":"전치사"},{"word":"in","ko":"안에","pron":"/ɪn/","pos":"전치사"},{"word":"on","ko":"위에","pron":"/ɑːn/","pos":"전치사"},{"word":"desk","ko":"책상","pron":"/desk/","pos":"명사"},{"word":"chair","ko":"의자","pron":"/tʃer/","pos":"명사"},{"word":"bed","ko":"침대","pron":"/bed/","pos":"명사"},{"word":"long","ko":"긴","pron":"/lɔːŋ/","pos":"형용사"},{"word":"book","ko":"책","pron":"/bʊk/","pos":"명사"},{"word":"pencil","ko":"연필","pron":"/ˈpensəl/","pos":"명사"}],"4학년|6단원":[{"word":"basketball","ko":"농구","pron":"/ˈbæskɪtbɔːl/","pos":"명사"},{"word":"sound","ko":"소리","pron":"/saʊnd/","pos":"명사"},{"word":"sure","ko":"확신하는","pron":"/ʃʊr/","pos":"형용사"},{"word":"badminton","ko":"배드민턴","pron":"/ˈbædmɪntən/","pos":"명사"},{"word":"soccer","ko":"축구","pron":"/ˈsɑːkər/","pos":"명사"},{"word":"play","ko":"하다/놀다","pron":"/pleɪ/","pos":"동사"},{"word":"baseball","ko":"야구","pron":"/ˈbeɪsbɔːl/","pos":"명사"},{"word":"ride","ko":"타다","pron":"/raɪd/","pos":"동사"},{"word":"bike","ko":"자전거","pron":"/baɪk/","pos":"명사"},{"word":"busy","ko":"바쁜","pron":"/ˈbɪzi/","pos":"형용사"}],"4학년|7단원":[{"word":"class","ko":"수업","pron":"/klæs/","pos":"명사"},{"word":"late","ko":"늦은","pron":"/leɪt/","pos":"형용사"},{"word":"music","ko":"음악","pron":"/ˈmjuːzɪk/","pos":"명사"},{"word":"pizza","ko":"피자","pron":"/ˈpiːtsə/","pos":"명사"},{"word":"cook","ko":"요리하다","pron":"/kʊk/","pos":"동사"},{"word":"today","ko":"오늘","pron":"/təˈdeɪ/","pos":"부사"},{"word":"day","ko":"날","pron":"/deɪ/","pos":"명사"}],"4학년|8단원":[{"word":"time","ko":"시간","pron":"/taɪm/","pos":"명사"},{"word":"school","ko":"학교","pron":"/skuːl/","pos":"명사"},{"word":"lunch","ko":"점심","pron":"/lʌntʃ/","pos":"명사"},{"word":"dinner","ko":"저녁식사","pron":"/ˈdɪnər/","pos":"명사"},{"word":"sleepy","ko":"졸린","pron":"/ˈsliːpi/","pos":"형용사"},{"word":"breakfast","ko":"아침식사","pron":"/ˈbrekfəst/","pos":"명사"},{"word":"hurry","ko":"서두르다","pron":"/ˈhɜːri/","pos":"동사"}],"4학년|9단원":[{"word":"game","ko":"게임","pron":"/ɡeɪm/","pos":"명사"},{"word":"picture","ko":"그림","pron":"/ˈpɪktʃər/","pos":"명사"},{"word":"draw","ko":"그리다","pron":"/drɔː/","pos":"동사"},{"word":"make","ko":"만들다","pron":"/meɪk/","pos":"동사"},{"word":"clock","ko":"시계","pron":"/klɑːk/","pos":"명사"},{"word":"cloud","ko":"구름","pron":"/klaʊd/","pos":"명사"},{"word":"dance","ko":"춤추다","pron":"/dæns/","pos":"동사"}],"4학년|10단원":[{"word":"some","ko":"약간의","pron":"/sʌm/","pos":"관형사"},{"word":"noodle","ko":"국수","pron":"/ˈnuːdəl/","pos":"명사"},{"word":"full","ko":"배부른","pron":"/fʊl/","pos":"형용사"},{"word":"want","ko":"원하다","pron":"/wɑːnt/","pos":"동사"},{"word":"turkey","ko":"칠면조","pron":"/ˈtɜːrki/","pos":"명사"},{"word":"pie","ko":"파이","pron":"/paɪ/","pos":"명사"},{"word":"pizza","ko":"피자","pron":"/ˈpiːtsə/","pos":"명사"},{"word":"chicken","ko":"닭고기","pron":"/ˈtʃɪkɪn/","pos":"명사"},{"word":"juice","ko":"주스","pron":"/dʒuːs/","pos":"명사"},{"word":"shirt","ko":"셔츠","pron":"/ʃɜːrt/","pos":"명사"}],"4학년|11단원":[{"word":"much","ko":"많은","pron":"/mʌtʃ/","pos":"관형사"},{"word":"sweater","ko":"스웨터","pron":"/ˈswetər/","pos":"명사"},{"word":"fan","ko":"선풍기","pron":"/fæn/","pos":"명사"},{"word":"candy","ko":"사탕","pron":"/ˈkændi/","pos":"명사"},{"word":"hundred","ko":"백(100)","pron":"/ˈhʌndrəd/","pos":"수사"},{"word":"thousand","ko":"천(1000)","pron":"/ˈθaʊzənd/","pos":"수사"}],"4학년|12단원":[{"word":"cook","ko":"요리사","pron":"/kʊk/","pos":"명사"},{"word":"singer","ko":"가수","pron":"/ˈsɪŋər/","pos":"명사"},{"word":"doctor","ko":"의사","pron":"/ˈdɑːktər/","pos":"명사"},{"word":"farmer","ko":"농부","pron":"/ˈfɑːrmər/","pos":"명사"},{"word":"pilot","ko":"파일럿","pron":"/ˈpaɪlət/","pos":"명사"},{"word":"scientist","ko":"과학자","pron":"/ˈsaɪəntɪst/","pos":"명사"},{"word":"together","ko":"함께","pron":"/təˈɡeðər/","pos":"부사"},{"word":"fun","ko":"재미있는","pron":"/fʌn/","pos":"형용사"},{"word":"sing","ko":"노래하다","pron":"/sɪŋ/","pos":"동사"},{"word":"sky","ko":"하늘","pron":"/skaɪ/","pos":"명사"}],"5학년|1단원":[{"word":"australia","ko":"호주","pron":"/ɒˈstreɪliə/","pos":"명사"},{"word":"brazil","ko":"브라질","pron":"/brəˈzɪl/","pos":"명사"},{"word":"china","ko":"중국","pron":"/ˈtʃaɪnə/","pos":"명사"},{"word":"france","ko":"프랑스","pron":"/fræns/","pos":"명사"},{"word":"india","ko":"인도","pron":"/ˈɪndiə/","pos":"명사"},{"word":"kenya","ko":"케냐","pron":"/ˈkenjə/","pos":"명사"},{"word":"korea","ko":"한국","pron":"/kəˈriːə/","pos":"명사"},{"word":"animal","ko":"동물","pron":"/ˈænɪməl/","pos":"명사"},{"word":"brown","ko":"갈색","pron":"/braʊn/","pos":"형용사"},{"word":"computer","ko":"컴퓨터","pron":"/kəmˈpjuːtər/","pos":"명사"},{"word":"kick","ko":"차다","pron":"/kɪk/","pos":"동사"},{"word":"spell","ko":"철자 쓰다","pron":"/spel/","pos":"동사"}],"5학년|2단원":[{"word":"bring","ko":"가져오다","pron":"/brɪŋ/","pos":"동사"},{"word":"camera","ko":"카메라","pron":"/ˈkæmərə/","pos":"명사"},{"word":"chocolate","ko":"초콜릿","pron":"/ˈtʃɑːklət/","pos":"명사"},{"word":"drink","ko":"마시다","pron":"/drɪŋk/","pos":"동사"},{"word":"food","ko":"음식","pron":"/fuːd/","pos":"명사"},{"word":"museum","ko":"박물관","pron":"/mjuːˈziːəm/","pos":"명사"},{"word":"palace","ko":"궁전","pron":"/ˈpæləs/","pos":"명사"},{"word":"restroom","ko":"화장실","pron":"/ˈrestruːm/","pos":"명사"},{"word":"use","ko":"사용하다","pron":"/juːz/","pos":"동사"},{"word":"wait","ko":"기다리다","pron":"/weɪt/","pos":"동사"},{"word":"water","ko":"물","pron":"/ˈwɔːtər/","pos":"명사"},{"word":"welcome","ko":"환영해요","pron":"/ˈwelkəm/","pos":"감탄사"}],"5학년|3단원":[{"word":"bathroom","ko":"욕실","pron":"/ˈbæθruːm/","pos":"명사"},{"word":"bedroom","ko":"침실","pron":"/ˈbedruːm/","pos":"명사"},{"word":"garden","ko":"정원","pron":"/ˈɡɑːrdən/","pos":"명사"},{"word":"kitchen","ko":"부엌","pron":"/ˈkɪtʃɪn/","pos":"명사"},{"word":"table","ko":"테이블","pron":"/ˈteɪbəl/","pos":"명사"},{"word":"toothbrush","ko":"칫솔","pron":"/ˈtuːθbrʌʃ/","pos":"명사"},{"word":"cookie","ko":"쿠키","pron":"/ˈkʊki/","pos":"명사"},{"word":"cup","ko":"컵","pron":"/kʌp/","pos":"명사"},{"word":"flower","ko":"꽃","pron":"/ˈflaʊər/","pos":"명사"},{"word":"house","ko":"집","pron":"/haʊs/","pos":"명사"},{"word":"traditional","ko":"전통적인","pron":"/trəˈdɪʃənəl/","pos":"형용사"}],"5학년|4단원":[{"word":"glasses","ko":"안경","pron":"/ˈɡlæsɪz/","pos":"명사"},{"word":"scissors","ko":"가위","pron":"/ˈsɪzərz/","pos":"명사"},{"word":"textbook","ko":"교과서","pron":"/ˈtekstbʊk/","pos":"명사"},{"word":"umbrella","ko":"우산","pron":"/ʌmˈbrelə/","pos":"명사"},{"word":"big","ko":"큰","pron":"/bɪɡ/","pos":"형용사"},{"word":"long","ko":"긴","pron":"/lɔːŋ/","pos":"형용사"},{"word":"shirt","ko":"셔츠","pron":"/ʃɜːrt/","pos":"명사"},{"word":"shoes","ko":"신발","pron":"/ʃuːz/","pos":"명사"},{"word":"warm","ko":"따뜻한","pron":"/wɔːrm/","pos":"형용사"},{"word":"whose","ko":"누구의","pron":"/huːz/","pos":"의문사"}],"5학년|5단원":[{"word":"get","ko":"얻다","pron":"/ɡet/","pos":"동사"},{"word":"breakfast","ko":"아침식사","pron":"/ˈbrekfəst/","pos":"명사"},{"word":"school","ko":"학교","pron":"/skuːl/","pos":"명사"},{"word":"come","ko":"오다","pron":"/kʌm/","pos":"동사"},{"word":"homework","ko":"숙제","pron":"/ˈhoʊmwɜːrk/","pos":"명사"},{"word":"bed","ko":"침대","pron":"/bed/","pos":"명사"},{"word":"time","ko":"시간","pron":"/taɪm/","pos":"명사"}],"5학년|6단원":[{"word":"camping","ko":"캠핑","pron":"/ˈkæmpɪŋ/","pos":"명사"},{"word":"beach","ko":"해변","pron":"/biːtʃ/","pos":"명사"},{"word":"join","ko":"참가하다","pron":"/dʒɔɪn/","pos":"동사"},{"word":"club","ko":"동아리","pron":"/klʌb/","pos":"명사"},{"word":"robot","ko":"로봇","pron":"/ˈroʊbɑːt/","pos":"명사"},{"word":"visit","ko":"방문하다","pron":"/ˈvɪzɪt/","pos":"동사"},{"word":"aunt","ko":"이모/고모","pron":"/ænt/","pos":"명사"},{"word":"summer","ko":"여름","pron":"/ˈsʌmər/","pos":"명사"},{"word":"uncle","ko":"삼촌","pron":"/ˈʌŋkəl/","pos":"명사"}],"5학년|7단원":[{"word":"eat","ko":"먹다","pron":"/iːt/","pos":"동사"},{"word":"pizza","ko":"피자","pron":"/ˈpiːtsə/","pos":"명사"},{"word":"make","ko":"만들다","pron":"/meɪk/","pos":"동사"},{"word":"cookie","ko":"쿠키","pron":"/ˈkʊki/","pos":"명사"},{"word":"play","ko":"하다/놀다","pron":"/pleɪ/","pos":"동사"},{"word":"soccer","ko":"축구","pron":"/ˈsɑːkər/","pos":"명사"},{"word":"see","ko":"보다","pron":"/siː/","pos":"동사"},{"word":"movie","ko":"영화","pron":"/ˈmuːvi/","pos":"명사"},{"word":"swim","ko":"수영하다","pron":"/swɪm/","pos":"동사"},{"word":"beach","ko":"해변","pron":"/biːtʃ/","pos":"명사"},{"word":"people","ko":"사람들","pron":"/ˈpiːpəl/","pos":"명사"},{"word":"travel","ko":"여행하다","pron":"/ˈtrævəl/","pos":"동사"},{"word":"yesterday","ko":"어제","pron":"/ˈjestərdeɪ/","pos":"부사"}],"5학년|8단원":[{"word":"art","ko":"미술","pron":"/ɑːrt/","pos":"명사"},{"word":"english","ko":"영어","pron":"/ˈɪŋɡlɪʃ/","pos":"명사"},{"word":"korean","ko":"한국어","pron":"/kəˈriːən/","pos":"명사"},{"word":"math","ko":"수학","pron":"/mæθ/","pos":"명사"},{"word":"music","ko":"음악","pron":"/ˈmjuːzɪk/","pos":"명사"},{"word":"science","ko":"과학","pron":"/ˈsaɪəns/","pos":"명사"},{"word":"favorite","ko":"좋아하는","pron":"/ˈfeɪvərɪt/","pos":"형용사"},{"word":"listen","ko":"듣다","pron":"/ˈlɪsən/","pos":"동사"},{"word":"song","ko":"노래","pron":"/sɔːŋ/","pos":"명사"},{"word":"star","ko":"별","pron":"/stɑːr/","pos":"명사"},{"word":"subject","ko":"과목","pron":"/ˈsʌbdʒɪkt/","pos":"명사"}],"5학년|9단원":[{"word":"cheap","ko":"저렴한","pron":"/tʃiːp/","pos":"형용사"},{"word":"market","ko":"시장","pron":"/ˈmɑːrkɪt/","pos":"명사"},{"word":"pants","ko":"바지","pron":"/pænts/","pos":"명사"},{"word":"shorts","ko":"반바지","pron":"/ʃɔːrts/","pos":"명사"},{"word":"try","ko":"시도하다","pron":"/traɪ/","pos":"동사"},{"word":"won","ko":"원(화폐)","pron":"/wʌn/","pos":"명사"}],"5학년|10단원":[{"word":"straight","ko":"똑바로","pron":"/streɪt/","pos":"형용사"},{"word":"left","ko":"왼쪽","pron":"/left/","pos":"명사"},{"word":"right","ko":"오른쪽","pron":"/raɪt/","pos":"명사"},{"word":"block","ko":"구역","pron":"/blɑːk/","pos":"명사"},{"word":"corner","ko":"모퉁이","pron":"/ˈkɔːrnər/","pos":"명사"},{"word":"bank","ko":"은행","pron":"/bæŋk/","pos":"명사"},{"word":"hospital","ko":"병원","pron":"/ˈhɑːspɪtəl/","pos":"명사"},{"word":"library","ko":"도서관","pron":"/ˈlaɪbreri/","pos":"명사"},{"word":"museum","ko":"박물관","pron":"/mjuːˈziːəm/","pos":"명사"},{"word":"park","ko":"공원","pron":"/pɑːrk/","pos":"명사"},{"word":"restaurant","ko":"식당","pron":"/ˈrestərɑːnt/","pos":"명사"}],"5학년|11단원":[{"word":"cold","ko":"감기","pron":"/koʊld/","pos":"형용사"},{"word":"fever","ko":"열(발열)","pron":"/ˈfiːvər/","pos":"명사"},{"word":"headache","ko":"두통","pron":"/ˈhedeɪk/","pos":"명사"},{"word":"rest","ko":"쉬다","pron":"/rest/","pos":"동사"},{"word":"medicine","ko":"약","pron":"/ˈmedɪsɪn/","pos":"명사"},{"word":"more","ko":"더","pron":"/mɔːr/","pos":"부사"},{"word":"sleep","ko":"자다","pron":"/sliːp/","pos":"동사"},{"word":"thirsty","ko":"목마른","pron":"/ˈθɜːrsti/","pos":"형용사"},{"word":"tired","ko":"피곤한","pron":"/ˈtaɪərd/","pos":"형용사"},{"word":"wrong","ko":"틀린","pron":"/rɔːŋ/","pos":"형용사"}],"5학년|12단원":[{"word":"bake","ko":"굽다","pron":"/beɪk/","pos":"동사"},{"word":"clean","ko":"청소하다","pron":"/kliːn/","pos":"동사"},{"word":"fly","ko":"날다","pron":"/flaɪ/","pos":"동사"},{"word":"invite","ko":"초대하다","pron":"/ɪnˈvaɪt/","pos":"동사"},{"word":"learn","ko":"배우다","pron":"/lɜːrn/","pos":"동사"},{"word":"travel","ko":"여행하다","pron":"/ˈtrævəl/","pos":"동사"},{"word":"beautiful","ko":"아름다운","pron":"/ˈbjuːtɪfəl/","pos":"형용사"},{"word":"drone","ko":"드론","pron":"/droʊn/","pos":"명사"},{"word":"drum","ko":"드럼","pron":"/drʌm/","pos":"명사"},{"word":"snowman","ko":"눈사람","pron":"/ˈsnoʊmæn/","pos":"명사"},{"word":"winter","ko":"겨울","pron":"/ˈwɪntər/","pos":"명사"},{"word":"wish","ko":"바라다","pron":"/wɪʃ/","pos":"동사"}],"6학년|1단원":[{"word":"first","ko":"첫 번째","pron":"/fɜːrst/","pos":"서수"},{"word":"second","ko":"두 번째","pron":"/ˈsekənd/","pos":"서수"},{"word":"third","ko":"세 번째","pron":"/θɜːrd/","pos":"서수"},{"word":"fourth","ko":"네 번째","pron":"/fɔːrθ/","pos":"서수"},{"word":"fifth","ko":"다섯 번째","pron":"/fɪfθ/","pos":"서수"},{"word":"sixth","ko":"여섯 번째","pron":"/sɪksθ/","pos":"서수"},{"word":"floor","ko":"층","pron":"/flɔːr/","pos":"명사"},{"word":"grade","ko":"학년","pron":"/ɡreɪd/","pos":"명사"},{"word":"all","ko":"모든","pron":"/ɔːl/","pos":"관형사"},{"word":"classroom","ko":"교실","pron":"/ˈklæsruːm/","pos":"명사"},{"word":"place","ko":"장소","pron":"/pleɪs/","pos":"명사"},{"word":"vietnam","ko":"베트남","pron":"/ˌvietˈnɑːm/","pos":"명사"}],"6학년|2단원":[{"word":"actor","ko":"배우","pron":"/ˈæktər/","pos":"명사"},{"word":"baker","ko":"제빵사","pron":"/ˈbeɪkər/","pos":"명사"},{"word":"designer","ko":"디자이너","pron":"/dɪˈzaɪnər/","pos":"명사"},{"word":"painter","ko":"화가","pron":"/ˈpeɪntər/","pos":"명사"},{"word":"writer","ko":"작가","pron":"/ˈraɪtər/","pos":"명사"},{"word":"care","ko":"돌보다","pron":"/ker/","pos":"동사"},{"word":"catch","ko":"잡다","pron":"/kætʃ/","pos":"동사"},{"word":"dream","ko":"꿈","pron":"/driːm/","pos":"명사"},{"word":"future","ko":"미래","pron":"/ˈfjuːtʃər/","pos":"명사"},{"word":"office","ko":"사무실","pron":"/ˈɑːfɪs/","pos":"명사"},{"word":"rabbit","ko":"토끼","pron":"/ˈræbɪt/","pos":"명사"},{"word":"throw","ko":"던지다","pron":"/θroʊ/","pos":"동사"}],"6학년|3단원":[{"word":"january","ko":"1월","pron":"/ˈdʒænjueri/","pos":"명사"},{"word":"february","ko":"2월","pron":"/ˈfebrueri/","pos":"명사"},{"word":"march","ko":"3월","pron":"/mɑːrtʃ/","pos":"명사"},{"word":"april","ko":"4월","pron":"/ˈeɪprəl/","pos":"명사"},{"word":"may","ko":"5월","pron":"/meɪ/","pos":"명사"},{"word":"june","ko":"6월","pron":"/dʒuːn/","pos":"명사"},{"word":"july","ko":"7월","pron":"/dʒuˈlaɪ/","pos":"명사"},{"word":"august","ko":"8월","pron":"/ˈɔːɡəst/","pos":"명사"},{"word":"september","ko":"9월","pron":"/sepˈtembər/","pos":"명사"},{"word":"october","ko":"10월","pron":"/ɑːkˈtoʊbər/","pos":"명사"},{"word":"november","ko":"11월","pron":"/noʊˈvembər/","pos":"명사"},{"word":"december","ko":"12월","pron":"/dɪˈsembər/","pos":"명사"},{"word":"daughter","ko":"딸","pron":"/ˈdɔːtər/","pos":"명사"},{"word":"news","ko":"뉴스","pron":"/njuːz/","pos":"명사"},{"word":"sell","ko":"팔다","pron":"/sel/","pos":"동사"},{"word":"win","ko":"이기다","pron":"/wɪn/","pos":"동사"}],"6학년|4단원":[{"word":"small","ko":"작은","pron":"/smɔːl/","pos":"형용사"},{"word":"curly","ko":"곱슬곱슬한","pron":"/ˈkɜːrli/","pos":"형용사"},{"word":"short","ko":"짧은","pron":"/ʃɔːrt/","pos":"형용사"},{"word":"dress","ko":"원피스","pron":"/dres/","pos":"명사"},{"word":"party","ko":"파티","pron":"/ˈpɑːrti/","pos":"명사"},{"word":"people","ko":"사람들","pron":"/ˈpiːpəl/","pos":"명사"},{"word":"piano","ko":"피아노","pron":"/piˈænoʊ/","pos":"명사"},{"word":"ribbon","ko":"리본","pron":"/ˈrɪbən/","pos":"명사"}],"6학년|5단원":[{"word":"often","ko":"자주","pron":"/ˈɔːfən/","pos":"부사"},{"word":"brush","ko":"칫솔질","pron":"/brʌʃ/","pos":"동사"},{"word":"teeth","ko":"치아","pron":"/tiːθ/","pos":"명사"},{"word":"exercise","ko":"운동","pron":"/ˈeksərsaɪz/","pos":"동사"},{"word":"eat","ko":"먹다","pron":"/iːt/","pos":"동사"},{"word":"vegetable","ko":"채소","pron":"/ˈvedʒtəbəl/","pos":"명사"},{"word":"habit","ko":"습관","pron":"/ˈhæbɪt/","pos":"명사"},{"word":"month","ko":"달","pron":"/mʌnθ/","pos":"명사"},{"word":"once","ko":"한 번","pron":"/wʌns/","pos":"부사"},{"word":"twice","ko":"두 번","pron":"/twaɪs/","pos":"부사"},{"word":"week","ko":"주","pron":"/wiːk/","pos":"명사"}],"6학년|6단원":[{"word":"fishing","ko":"낚시","pron":"/ˈfɪʃɪŋ/","pos":"명사"},{"word":"hiking","ko":"하이킹","pron":"/ˈhaɪkɪŋ/","pos":"명사"},{"word":"trip","ko":"여행","pron":"/trɪp/","pos":"명사"},{"word":"shopping","ko":"쇼핑","pron":"/ˈʃɑːpɪŋ/","pos":"명사"},{"word":"buy","ko":"사다","pron":"/baɪ/","pos":"동사"},{"word":"film","ko":"영화","pron":"/fɪlm/","pos":"명사"}],"6학년|7단원":[{"word":"season","ko":"계절","pron":"/ˈsiːzən/","pos":"명사"},{"word":"spring","ko":"봄","pron":"/sprɪŋ/","pos":"명사"},{"word":"summer","ko":"여름","pron":"/ˈsʌmər/","pos":"명사"},{"word":"fall","ko":"가을","pron":"/fɔːl/","pos":"명사"},{"word":"winter","ko":"겨울","pron":"/ˈwɪntər/","pos":"명사"},{"word":"beautiful","ko":"아름다운","pron":"/ˈbjuːtɪfəl/","pos":"형용사"},{"word":"because","ko":"왜냐하면","pron":"/bɪˈkɔːz/","pos":"접속사"},{"word":"bright","ko":"밝은","pron":"/braɪt/","pos":"형용사"},{"word":"colorful","ko":"다채로운","pron":"/ˈkʌlərfəl/","pos":"형용사"},{"word":"delicious","ko":"맛있는","pron":"/dɪˈlɪʃəs/","pos":"형용사"},{"word":"leaf","ko":"나뭇잎","pron":"/liːf/","pos":"명사"},{"word":"race","ko":"경주","pron":"/reɪs/","pos":"명사"},{"word":"snowman","ko":"눈사람","pron":"/ˈsnoʊmæn/","pos":"명사"},{"word":"store","ko":"가게","pron":"/stɔːr/","pos":"명사"}],"6학년|8단원":[{"word":"bigger","ko":"더 큰","pron":"/ˈbɪɡər/","pos":"형용사"},{"word":"faster","ko":"더 빠른","pron":"/ˈfæstər/","pos":"형용사"},{"word":"longer","ko":"더 긴","pron":"/ˈlɔːŋər/","pos":"형용사"},{"word":"stronger","ko":"더 강한","pron":"/ˈstrɔːŋər/","pos":"형용사"},{"word":"taller","ko":"더 키가 큰","pron":"/ˈtɔːlər/","pos":"형용사"},{"word":"again","ko":"다시","pron":"/əˈɡen/","pos":"부사"},{"word":"doughnut","ko":"도넛","pron":"/ˈdoʊnʌt/","pos":"명사"},{"word":"kilogram","ko":"킬로그램","pron":"/ˈkɪləɡræm/","pos":"명사"},{"word":"river","ko":"강","pron":"/ˈrɪvər/","pos":"명사"},{"word":"tower","ko":"탑","pron":"/ˈtaʊər/","pos":"명사"},{"word":"think","ko":"생각하다","pron":"/θɪŋk/","pos":"동사"}],"6학년|9단원":[{"word":"subway","ko":"지하철","pron":"/ˈsʌbweɪ/","pos":"명사"},{"word":"taxi","ko":"택시","pron":"/ˈtæksi/","pos":"명사"},{"word":"train","ko":"기차","pron":"/treɪn/","pos":"명사"},{"word":"behind","ko":"뒤에","pron":"/bɪˈhaɪnd/","pos":"전치사"},{"word":"between","ko":"사이에","pron":"/bɪˈtwiːn/","pos":"전치사"},{"word":"front","ko":"앞에","pron":"/frʌnt/","pos":"명사"},{"word":"land","ko":"땅","pron":"/lænd/","pos":"명사"},{"word":"line","ko":"선","pron":"/laɪn/","pos":"명사"},{"word":"number","ko":"번호","pron":"/ˈnʌmbər/","pos":"명사"},{"word":"top","ko":"꼭대기","pron":"/tɑːp/","pos":"명사"}],"6학년|10단원":[{"word":"fruit","ko":"과일","pron":"/fruːt/","pos":"명사"},{"word":"salad","ko":"샐러드","pron":"/ˈsæləd/","pos":"명사"},{"word":"spaghetti","ko":"스파게티","pron":"/spəˈɡeti/","pos":"명사"},{"word":"steak","ko":"스테이크","pron":"/steɪk/","pos":"명사"},{"word":"hot","ko":"매운","pron":"/hɑːt/","pos":"형용사"},{"word":"salty","ko":"짠","pron":"/ˈsɔːlti/","pos":"형용사"},{"word":"sour","ko":"신","pron":"/saʊər/","pos":"형용사"},{"word":"sweet","ko":"달콤한","pron":"/swiːt/","pos":"형용사"}],"6학년|11단원":[{"word":"catch","ko":"잡다","pron":"/kætʃ/","pos":"동사"},{"word":"clothing","ko":"의류","pron":"/ˈkloʊðɪŋ/","pos":"명사"},{"word":"delicious","ko":"맛있는","pron":"/dɪˈlɪʃəs/","pos":"형용사"},{"word":"game","ko":"게임","pron":"/ɡeɪm/","pos":"명사"},{"word":"paper","ko":"종이","pron":"/ˈpeɪpər/","pos":"명사"},{"word":"stay","ko":"머물다","pron":"/steɪ/","pos":"동사"},{"word":"stone","ko":"돌","pron":"/stoʊn/","pos":"명사"},{"word":"throw","ko":"던지다","pron":"/θroʊ/","pos":"동사"},{"word":"traditional","ko":"전통적인","pron":"/trəˈdɪʃənəl/","pos":"형용사"}],"6학년|12단원":[{"word":"recycle","ko":"재활용","pron":"/ˌriːˈsaɪkəl/","pos":"동사"},{"word":"can","ko":"캔","pron":"/kæn/","pos":"명사"},{"word":"bottle","ko":"병","pron":"/ˈbɑːtəl/","pos":"명사"},{"word":"reuse","ko":"재사용","pron":"/ˌriːˈjuːz/","pos":"동사"},{"word":"paper","ko":"종이","pron":"/ˈpeɪpər/","pos":"명사"},{"word":"light","ko":"빛","pron":"/laɪt/","pos":"명사"},{"word":"water","ko":"물","pron":"/ˈwɔːtər/","pos":"명사"},{"word":"stairs","ko":"계단","pron":"/sterz/","pos":"명사"},{"word":"earth","ko":"지구","pron":"/ɜːrθ/","pos":"명사"},{"word":"energy","ko":"에너지","pron":"/ˈenərʒi/","pos":"명사"},{"word":"forest","ko":"숲","pron":"/ˈfɔːrɪst/","pos":"명사"},{"word":"plastic","ko":"플라스틱","pron":"/ˈplæstɪk/","pos":"명사"},{"word":"save","ko":"구하다","pron":"/seɪv/","pos":"동사"},{"word":"voice","ko":"목소리","pron":"/vɔɪs/","pos":"명사"}]}
 
@@ -208,11 +130,16 @@ const DROP_ITEM_H=34,DROP_ARROW_H=24,DROP_VISIBLE=6;
 
 function scaleCanvas(){
   const dpr=window.devicePixelRatio||1;
-  const s=Math.min(window.innerWidth/W,window.innerHeight/H);
+  // iframe/artifact 뷰어 포함 실제 뷰포트 크기 정확히 계산
+  const vw=Math.max(document.documentElement.clientWidth,window.innerWidth||0);
+  const vh=Math.max(document.documentElement.clientHeight,window.innerHeight||0);
+  const s=Math.min(vw/W,vh/H);
   const cssW=Math.round(W*s),cssH=Math.round(H*s);
   canvas.style.width=cssW+'px';canvas.style.height=cssH+'px';
+  canvas.style.position='absolute';
+  canvas.style.left='50%';canvas.style.top='50%';
+  canvas.style.transform='translate(-50%,-50%)';
   canvas.width=cssW*dpr;canvas.height=cssH*dpr;
-  // 게임 좌표계(800×480)로 자동 매핑
   ctx.setTransform(s*dpr,0,0,s*dpr,0,0);
 }
 scaleCanvas();window.addEventListener('resize',scaleCanvas);
@@ -246,7 +173,7 @@ function playBGMNote(){
 }
 function startBGM(){if(bgmOn&&actx&&bgmTimer===null){bgmTimer=0;playBGMNote();}}
 function stopBGM(){clearTimeout(bgmTimer);bgmTimer=null;}
-function toggleBGM(){bgmOn=!bgmOn;if(bgmOn){playBGMNote();}else{stopBGM();}}
+function toggleBGM(){bgmOn=!bgmOn;if(bgmOn){bgmTimer=0;playBGMNote();}else{stopBGM();}}
 
 // SFX
 const sfx={
@@ -296,7 +223,7 @@ let typeIdx=0,typeTimer2=0;
 let unitEmojiCache={};
 let showQR=false,qrImg=null,qrGenerated=false;
 let resultScrollY=0,resultMaxScrollY=0;
-const QR_URL='https://claude.ai/public/artifacts/799e2f8e-d942-414c-9e8c-bb5ec781a07a';
+const QR_URL='https://wordrunner-qzqc.vercel.app/';
 const TYPE_TEXT='앗, 1분 뒤면 수업 시작이야!  🏃';
 const TYPE_SPEED=85;
 
@@ -314,8 +241,8 @@ const PROPER_NOUNS=new Set([
   // 요일 (days)
   'monday','tuesday','wednesday','thursday','friday','saturday','sunday',
   // 과목 (subjects)
-  'english','korean','math','mathematics','science','history','geography','music','art','pe',
-  'ethics','social','chinese','japanese','computer','physical',
+  'english','korean','history','geography',
+  'ethics','social','chinese','japanese',
   // 도시
   'seoul','paris','london','rome','tokyo','beijing','sydney','rio','newyork','berlin','madrid',
   'bangkok','dubai','istanbul','toronto','moscow','cairo','mumbai','delhi','shanghai','france','india','china','australia','brazil','kenya','america','japan','england','canada','mexico','italy','spain','germany','africa','asia','europe','america','uk','usa','seoul','paris','london','rome','tokyo','beijing','sydney','rio']);
@@ -328,7 +255,32 @@ function rr(x,y,w,h,r){
   ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
   ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
 }
-function speak(w){if('speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(w);u.lang='en-US';u.rate=0.85;speechSynthesis.speak(u);}};
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>{speechSynthesis.getVoices();}}
+// 영어 TTS 음성 사전 캐싱
+let _engVoice=null;
+function _initVoice(){
+  const vs=speechSynthesis.getVoices();
+  _engVoice=vs.find(v=>v.lang==='en-US'&&v.localService)
+    ||vs.find(v=>v.lang==='en-US')
+    ||vs.find(v=>v.lang==='en-GB')
+    ||vs.find(v=>v.lang.startsWith('en'));
+}
+if('speechSynthesis' in window){
+  speechSynthesis.onvoiceschanged=_initVoice;
+  _initVoice();
+}
+function speak(w){
+  if(!('speechSynthesis' in window))return;
+  // 발음 교정: behind → 'be-hind' (첫음절 비 강제)
+  const PRON={'behind':'be-hind'};
+  const text=PRON[w.toLowerCase()]||w;
+  if(!_engVoice)_initVoice();
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.8;
+  if(_engVoice&&_engVoice.lang.startsWith('en'))u.voice=_engVoice;
+  speechSynthesis.speak(u);
+};
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 const EM_SPECIFIC={
   'hot:매운':'🌶️','hot:더운':'🌡️','hot:뜨거운':'🔥',
@@ -366,10 +318,24 @@ function drawEmoji(em,cx,cy,size){
     ctx.save();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
     ctx.drawImage(img,cx-size/2,cy-size/2,size,size);
     ctx.restore();
+  } else if(img.complete&&img.naturalWidth===0){
+    // SVG 실패 시 fillText 폴백
+    ctx.save();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+    ctx.font=size+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(em,cx,cy);ctx.restore();
   }
 }
 
 function buildEmojiCache(){
+
+  // 회색 하트 SVG 사전 캐싱 (비활성 하트용)
+  if(!_emojiCache['__gray_heart__']){
+    const svg=`<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><path fill='#B0B0C4' d='M50 82C50 82 12 55 12 32C12 18 23 8 36 8C43 8 49 12 50 18C51 12 57 8 64 8C77 8 88 18 88 32C88 55 50 82 50 82Z'/><path fill='rgba(255,255,255,0.2)' d='M30 16C30 16 18 22 18 34'/></svg>`;
+    const img=new Image();
+    img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+    _emojiCache['__gray_heart__']=img;
+  }
+
   unitEmojiCache={};const used=new Set();
   for(const w of wordList){
     const em=getEM(w.word,w.ko);
@@ -378,6 +344,7 @@ function buildEmojiCache(){
   }
 }
 function startGame(){
+  bgmOn=true; // 게임 시작 시 BGM 항상 ON
   initAudio();
   const key=GRADES[gIdx]+'|'+UNITS[uIdx];
   wordList=(DB[key]||[]).filter(w=>w.ko&&w.ko!=='nan');
@@ -1040,10 +1007,19 @@ function drawCoin(c){
     ctx.globalAlpha=1.0;
     ctx.globalCompositeOperation='source-over';
     ctx.shadowBlur=0;
-    ctx.font=(r*1.28)+'px serif';
-    ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillStyle='rgba(0,0,0,1)'; // 투명하지 않은 색상으로 리셋
-    ctx.fillText(em,0,0);
+    ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='rgba(0,0,0,1)';
+    if(c.word==='season'){
+      // 2x2 배열: 🌸☀️ / 🍂❄️
+      ctx.font=(r*0.56)+'px serif';
+      ctx.fillText('🌸☀️',0,-r*0.3);
+      ctx.fillText('🍂❄️',0,r*0.3);
+    } else if(c.word==='shoes'){
+      ctx.font=(r*0.72)+'px serif';
+      ctx.fillText(em,0,0);
+    } else {
+      ctx.font=(r*1.28)+'px serif';
+      ctx.fillText(em,0,0);
+    }
     ctx.restore();
   } else {
     ctx.save();
@@ -1307,9 +1283,8 @@ function drawHUD(){
 
   // ── 하트 (우측, 풀컬러) ──
   for(let i=2;i>=0;i--){
-    // 직접 캔버스로 하트 그리기
     const hx=W-12-(2-i)*30,hy=32;
-    drawEmoji(i<hearts?'❤️':'🩶',hx,hy,24);
+    drawEmoji(i<hearts?'❤️':'🤍',hx,hy,24);
   }
 
   ctx.globalAlpha=1; // 버튼 투명도 초기화
@@ -1397,8 +1372,17 @@ function drawPopup(){
       ctx.translate(W/2,py+56);drawCustomCoinIcon('desk',36);ctx.translate(-W/2,-(py+56));
     } else {
       ctx.textAlign='center';ctx.textBaseline='top';
-      ctx.font='62px serif';
-      ctx.fillText(em,W/2,py+22);
+      if(popupWord.word==='season'){
+        ctx.font='30px serif';
+        ctx.fillText('🌸☀️',W/2,py+20);
+        ctx.fillText('🍂❄️',W/2,py+55);
+      } else if(popupWord.word==='shoes'){
+        ctx.font='44px serif';
+        ctx.fillText(em,W/2,py+28);
+      } else {
+        ctx.font='62px serif';
+        ctx.fillText(em,W/2,py+22);
+      }
     }
     ctx.restore();
     // ── 영단어 ──
@@ -1583,8 +1567,122 @@ function drawLobbyChar(x,y){
 }
 
 
-Object.assign(EM,{
-  'korea':'🇰🇷','vietnam':'🇻🇳','france':'🇫🇷','india':'🇮🇳','china':'🇨🇳',
+Object.assign(EM,{about:'💭',again:'🔄',all:'✨',animal:'🐾',aunt:'👩',australia:'🦘',
+bad:'👎',bake:'🧁',be:'✨',beautiful:'🌸',because:'💭',bed:'🛏️',
+beef:'🥩',behind:'⬅️',between:'↔️',big:'🔵',bigger:'⬆️',block:'🧱',
+box:'📦',brazil:'🌎',breakfast:'🍳',bright:'💡',bring:'🤲',brown:'🟤',
+brush:'🪥',busy:'⏰',buy:'🛍️',can:'🥫',care:'💝',chair:'🪑',
+cheap:'💰',china:'🐉',class:'🏫',classroom:'🏫',clean:'🧹',climb:'🧗',
+close:'🚪',clothing:'👕',club:'🎭',color:'🎨',colorful:'🌈',come:'🚶',
+cool:'😎',corner:'📐',cup:'☕',curly:'〰️',cute:'🥰',dance:'💃',
+daughter:'👧',day:'☀️',delicious:'😋',desk:'📋',dinner:'🍽️',do:'✅',
+door:'🚪',down:'⬇️',draw:'🎨',drink:'🥤',eat:'🍽️',eight:'8️⃣',
+exercise:'🏋️',fan:'🌀',fast:'⚡',faster:'⚡',favorite:'⭐',feel:'🫀',
+fifth:'5️⃣',film:'🎬',fine:'😊',first:'🥇',fishing:'🎣',five:'5️⃣',
+floor:'🏢',fly:'✈️',four:'4️⃣',fourth:'4️⃣',france:'🗼',front:'➡️',
+full:'😋',fun:'🎉',game:'🎮',get:'✋',go:'🏃',good:'👍',grade:'📊',
+great:'🌟',habit:'📅',have:'✋',he:'👦',help:'🤝',here:'📍',
+hiking:'🥾',homework:'📝',how:'❓',hundred:'💯',hurry:'🏃',in:'📦',
+india:'🕌',ink:'🖊️',invite:'💌',it:'📦',join:'🤝',jump:'🦘',
+kenya:'🌍',kick:'🦶',kilogram:'⚖️',kind:'💝',kite:'🪁',korea:'🇰🇷',
+land:'🌍',late:'⏰',learn:'💡',left:'⬅️',let:'✅',light:'💡',
+like:'👍',line:'📏',lip:'👄',listen:'🎧',long:'📏',longer:'📏',
+look:'👀',lunch:'🥪',make:'🔨',many:'🔢',meet:'🤝',month:'📅',
+more:'➕',movie:'🎬',much:'🔢',name:'📛',news:'📰',nice:'😊',
+nine:'9️⃣',not:'❌',now:'⏱️',number:'🔢',often:'🔄',okay:'👍',
+old:'👴',on:'⬆️',once:'1️⃣',one:'1️⃣',open:'🔓',out:'🚪',
+outside:'🌳',palace:'🏯',people:'👥',picture:'🖼️',place:'📍',
+play:'🎮',please:'🙏',pretty:'🌸',prince:'👑',push:'🫱',queen:'👑',
+restroom:'🚻',reuse:'♻️',ride:'🚲',right:'➡️',run:'🏃',salty:'🧂',
+save:'🦺',second:'2️⃣',see:'👀',sell:'🏪',seven:'7️⃣',she:'👧',
+shopping:'🛍️',short:'📏',sing:'🎤',sit:'🪑',six:'6️⃣',sixth:'6️⃣',
+skate:'⛸️',ski:'🎿',sky:'🌤️',sleepy:'😴',small:'🔵',so:'➡️',
+some:'🔢',song:'🎵',sorry:'😔',sound:'🔊',sour:'🍋',spell:'✏️',
+stand:'🧍',stay:'🏠',stone:'🪨',stop:'🛑',straight:'⬆️',stronger:'💪',
+sure:'✅',sweater:'🧥',sweet:'🍬',swim:'🏊',table:'🪑',talk:'💬',
+tall:'🗼',taller:'🗼',tape:'📼',ten:'🔟',thank:'🙏',that:'👉',
+there:'📍',think:'💭',third:'3️⃣',this:'👈',thousand:'💯',three:'3️⃣',
+time:'⏰',today:'📅',together:'🤝',toothbrush:'🪥',top:'⬆️',touch:'✋',
+traditional:'🏛️',travel:'✈️',trip:'🗺️',try:'💪',twice:'2️⃣',two:'2️⃣',
+uncle:'👨',under:'⬇️',up:'⬆️',use:'🔧',vegetable:'🥦',vietnam:'🌿',
+visit:'🗺️',voice:'🎤',wait:'⏳',want:'🙋',warm:'☀️',watch:'⌚',
+weather:'🌤️',week:'📅',welcome:'👋',well:'✅',what:'❓',where:'📍',
+who:'👤',whose:'👤',win:'🏆',wish:'⭐',won:'💵',work:'💼',worry:'😰',
+wrong:'❌',year:'🗓️',yes:'✅',yesterday:'📅',you:'👤',zoo:'🦁',
+bottle:'🍾',paper:'📄',glass:'🥛',cook:'👨‍🍳',late:'⏰',day:'☀️',
+bottle:'🍾',can:'🥫',reuse:'♻️',recycle:'♻️',museum:'🏛️',soccer:'⚽',korea:'🇰🇷',ball:'⚽',painter:'🎨',violin:'🎻',cello:'🎻',flute:'🪈',trumpet:'🎺',harp:'🎸',gym:'🏋️',pool:'🏊',track:'🏃',field:'⚽',court:'🏸',librarian:'📚',janitor:'🧹',principal:'👔',coach:'🏆',tutor:'📖',pilot:'✈️',driver:'🚗',baker:'🍞',butcher:'🥩',plumber:'🔧',carpenter:'🪚',electrician:'⚡',firefighter:'🚒',lifeguard:'🏊',referee:'🏅',umpire:'⚾',// 스포츠/체육
+'hungry':'🍽️','thirsty':'💧','full':'😋','full':'😋','ball':'⚽','basketball':'🏀','baseball':'⚾','volleyball':'🏐','football':'🏈',
+'tennis':'🎾','badminton':'🏸','bowling':'🎳','golf':'⛳','boxing':'🥊',
+'skating':'⛸️','skiing':'🎿','cycling':'🚴','swimming':'🏊','jogging':'🏃',
+'marathon':'🏃','gymnastics':'🤸','yoga':'🧘','wrestling':'🤼','archery':'🏹',
+'rowing':'🚣','surfing':'🏄','diving':'🤿','climbing':'🧗','hiking':'🥾',
+// 악기
+'drum':'🥁','violin':'🎻','guitar':'🎸','piano':'🎹','trumpet':'🎺',
+'recorder':'🎵','flute':'🪈','cello':'🎻','harp':'🎸','keyboard':'🎹',
+'ukulele':'🪕','saxophone':'🎷','clarinet':'🎵','oboe':'🎵','tuba':'🎺',
+// 학용품/학교
+'pencil':'✏️','eraser':'🩹','ruler':'📏','scissors':'✂️','glue':'🧴',
+'paint':'🎨','brush':'🖌️','crayon':'🖍️','chalk':'🪢','textbook':'📚',
+'notebook':'📓','pen':'🖊️','marker':'🖊️','tape':'📼','compass':'🧭',
+// 학교 장소
+'library':'📚','playground':'🛝','gym':'🏋️','cafeteria':'🍽️','bathroom':'🚻',
+'office':'🏢','laboratory':'🔬','auditorium':'🎭','hallway':'🚪',
+// 과목
+'math':'📐','science':'🔬','history':'📜','geography':'🌍','music':'🎵',
+'art':'🎨','english':'📖','korean':'🇰🇷','chinese':'🇨🇳','japanese':'🇯🇵',
+'pe':'🏃','health':'❤️','ethics':'📖','social':'👥','computer':'💻',
+// 직업
+'teacher':'👩‍🏫','student':'👨‍🎓','doctor':'👨‍⚕️','nurse':'👩‍⚕️','police':'👮',
+'soldier':'💂','farmer':'👨‍🌾','chef':'👨‍🍳','waiter':'🧑‍🍳','cashier':'💰',
+'pilot':'✈️','driver':'🚗','engineer':'⚙️','scientist':'🔬','artist':'🎨',
+'musician':'🎵','actor':'🎭','singer':'🎤','dancer':'💃','writer':'✍️',
+'reporter':'📰','photographer':'📷','designer':'🎨','programmer':'💻',
+'mechanic':'🔧','electrician':'⚡','plumber':'🔧','carpenter':'🪚',
+'firefighter':'🚒','lifeguard':'🏊','coach':'🏆','librarian':'📚',
+'principal':'👔','janitor':'🧹','guard':'💂','manager':'👔',
+// 동물 추가
+'parrot':'🦜','hamster':'🐹','rabbit':'🐰','guinea':'🐹','turtle':'🐢',
+'lizard':'🦎','snake':'🐍','frog':'🐸','bear':'🐻','panda':'🐼',
+'koala':'🐨','penguin':'🐧','flamingo':'🦩','peacock':'🦚','eagle':'🦅',
+'owl':'🦉','bat':'🦇','deer':'🦌','fox':'🦊','wolf':'🐺',
+'elephant':'🐘','giraffe':'🦒','zebra':'🦓','hippo':'🦛','rhino':'🦏',
+'kangaroo':'🦘','crocodile':'🐊','dolphin':'🐬','whale':'🐳','octopus':'🐙',
+'crab':'🦀','lobster':'🦞','shrimp':'🍤','snail':'🐌','butterfly':'🦋',
+'bee':'🐝','ant':'🐜','spider':'🕷️','worm':'🪱',
+// 음식 추가
+'sandwich':'🥪','hamburger':'🍔','hotdog':'🌭','pizza':'🍕','pasta':'🍝',
+'noodle':'🍜','noodles':'🍜','dumpling':'🥟','sushi':'🍣','steak':'🥩',
+'turkey':'🦃','ham':'🍖','bacon':'🥓','egg':'🥚','eggs':'🥚',
+'butter':'🧈','cheese':'🧀','yogurt':'🥛','cream':'🍦','pudding':'🍮',
+'cookie':'🍪','cake':'🎂','pie':'🥧','donut':'🍩','candy':'🍬',
+'chocolate':'🍫','ice':'🧊','lemon':'🍋','lime':'🍋','coconut':'🥥',
+'avocado':'🥑','broccoli':'🥦','carrot':'🥕','corn':'🌽','mushroom':'🍄',
+'onion':'🧅','garlic':'🧄','pepper':'🌶️','tomato':'🍅','potato':'🥔',
+'eggplant':'🍆','pumpkin':'🎃','cucumber':'🥒','salad':'🥗','soup':'🍲',
+// 장소/건물
+'museum':'🏛️','hospital':'🏥','hotel':'🏨','mall':'🏬','market':'🛒',
+'bakery':'🍞','restaurant':'🍽️','cafe':'☕','bank':'🏦','church':'⛪',
+'temple':'🏯','mosque':'🕌','palace':'🏯','castle':'🏰','bridge':'🌉',
+'tunnel':'🚇','airport':'✈️','port':'⚓','harbor':'⚓','dock':'⚓',
+'farm':'🌾','factory':'🏭','office':'🏢','theater':'🎭','cinema':'🎬',
+'concert':'🎵','stadium':'🏟️','pool':'🏊','track':'🏃','court':'🏸',
+// 교통
+'subway':'🚇','tram':'🚊','cable':'🚡','ferry':'⛴️','speedboat':'🚤',
+'canoe':'🛶','helicopter':'🚁','rocket':'🚀','spaceship':'🚀',
+'scooter':'🛵','skateboard':'🛹','rollerblade':'⛸️',
+// 기타
+'magazine':'📰','comic':'📕','novel':'📗','poem':'📜','dictionary':'📖',
+'alphabet':'🔤','word':'💬','sentence':'📝','paragraph':'📄','story':'📖',
+'test':'📝','exam':'📝','quiz':'📝','homework':'📚','project':'📋',
+'report':'📊','presentation':'📊','speech':'🎤','debate':'🗣️','discussion':'💬',
+'experiment':'🔬','research':'🔍','discovery':'💡','invention':'⚙️','idea':'💡',
+'question':'❓','answer':'✅','correct':'✅','wrong':'❌','score':'🏆',
+'grade':'📊','pass':'✅','fail':'❌','absent':'❌','present':'✅',
+// 자연
+'tornado':'🌪️','hurricane':'🌀','tsunami':'🌊','earthquake':'💥','volcano':'🌋',
+'avalanche':'❄️','flood':'🌊','drought':'☀️','wildfire':'🔥','landslide':'⛰️',
+'lightning':'⚡','thunder':'⚡','rainbow':'🌈','fog':'🌫️','mist':'🌫️',
+'dew':'💧','frost':'❄️','hail':'🌨️','sleet':'🌧️','blizzard':'❄️','korea':'🇰🇷','vietnam':'🇻🇳','france':'🇫🇷','india':'🇮🇳','china':'🇨🇳',
   'australia':'🇦🇺','brazil':'🇧🇷','kenya':'🇰🇪','america':'🇺🇸','japan':'🇯🇵',
   'england':'🇬🇧','uk':'🇬🇧','canada':'🇨🇦','mexico':'🇲🇽','italy':'🇮🇹',
   'spain':'🇪🇸','germany':'🇩🇪','egypt':'🇪🇬','russia':'🇷🇺','thailand':'🇹🇭',
@@ -1596,24 +1694,21 @@ Object.assign(EM,{
   'Korea':'🇰🇷','Vietnam':'🇻🇳','France':'🇫🇷','India':'🇮🇳','China':'🇨🇳',
   'Australia':'🇦🇺','Brazil':'🇧🇷','Japan':'🇯🇵','England':'🇬🇧','Canada':'🇨🇦',
   'Mexico':'🇲🇽','Italy':'🇮🇹','Spain':'🇪🇸','Germany':'🇩🇪','America':'🇺🇸',
-  'Earth':'🌍','earth':'🌍',
-});
-Object.assign(EM,{
-  // issue7: 잘못된 이모지 수정
+  'Earth':'🌍','earth':'🌍',// issue7: 잘못된 이모지 수정
   'friend':'👫','corner':'📐','plastic':'🧴','feel':'💭',
-  'small':'🐜','cheap':'🏷️','voice':'🗣️','library':'📚',
+  'small':'🤏','cheap':'🏷️','voice':'🗣️','library':'📚',
   'work':'💼','short':'📏','long':'↔️','block':'🧱',
-  'wish':'🌠','drone':'🚁','okay':'👌',
-  'table':'🍽️','all':'🤲','line':'➖','hiking':'🥾',
-  'cup':'☕','catch':'🫳','favorite':'⭐','beautiful':'🌸',
-  'taller':'📏','season':'🍂','bigger':'🔭','river':'🏞️',
-  'sweater':'🧥','fan':'🌀','thousand':'💯','singer':'🎤',
+  'wish':'🌠','drone':'🛸','okay':'👌',
+  'table':'🏓','all':'🌐','line':'➖','hiking':'🥾',
+  'cup':'☕','catch':'🧤','favorite':'⭐','beautiful':'🌸',
+  'taller':'↕️','season':'🌸☀️🍂❄️','bigger':'⬆️','river':'🏞️',
+  'sweater':'🧥','fan':'🌀','thousand':'🔢','singer':'🎤',
   'stop':'🛑','eraser':'📝','push':'🛒','glue':'🫙',
   'jump':'🦘','ink':'🖊️','yes':'✅','so':'💬',
   'zoo':'🦁','go':'🚶',
   // issue8: 구체적 수정
-  'shoes':'👟','book':'📖','brush':'🪥',
-  'won':'₩','store':'🛒','tape':'📦',
+  'shoes':'👟👟','book':'📖','brush':'🪥',
+  'won':'🪙','store':'🛒','tape':'📦',
   // 계절/월
   'january':'❄️','february':'💝','march':'🌱','april':'🌸',
   'june':'☀️','july':'🏖️','august':'🌻','september':'🍂',
@@ -1624,8 +1719,7 @@ Object.assign(EM,{
   // 과목
   'english':'📖','math':'📐','mathematics':'📐','science':'🔬',
   'history':'📜','geography':'🗺️','music':'🎵','art':'🎨',
-  'pe':'🏃','ethics':'📖',
-});
+  'pe':'🏃','ethics':'📖','habit':'📋','sell':'💰','right':'👉'});
 function generateQRCode(){
   if(qrGenerated)return;
   qrGenerated=true;
