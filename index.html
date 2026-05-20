@@ -246,7 +246,7 @@ function playBGMNote(){
 }
 function startBGM(){if(bgmOn&&actx&&bgmTimer===null){bgmTimer=0;playBGMNote();}}
 function stopBGM(){clearTimeout(bgmTimer);bgmTimer=null;}
-function toggleBGM(){bgmOn=!bgmOn;if(bgmOn){playBGMNote();}else{stopBGM();}}
+function toggleBGM(){bgmOn=!bgmOn;if(bgmOn){bgmTimer=0;playBGMNote();}else{stopBGM();}}
 
 // SFX
 const sfx={
@@ -296,7 +296,7 @@ let typeIdx=0,typeTimer2=0;
 let unitEmojiCache={};
 let showQR=false,qrImg=null,qrGenerated=false;
 let resultScrollY=0,resultMaxScrollY=0;
-const QR_URL='https://claude.ai/public/artifacts/799e2f8e-d942-414c-9e8c-bb5ec781a07a';
+const QR_URL='https://claude.ai/public/artifacts/c91e2a54-d64b-42a4-b648-59d7283442c7';
 const TYPE_TEXT='앗, 1분 뒤면 수업 시작이야!  🏃';
 const TYPE_SPEED=85;
 
@@ -366,10 +366,24 @@ function drawEmoji(em,cx,cy,size){
     ctx.save();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
     ctx.drawImage(img,cx-size/2,cy-size/2,size,size);
     ctx.restore();
+  } else if(img.complete&&img.naturalWidth===0){
+    // SVG 실패 시 fillText 폴백
+    ctx.save();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+    ctx.font=size+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(em,cx,cy);ctx.restore();
   }
 }
 
 function buildEmojiCache(){
+
+  // 회색 하트 SVG 사전 캐싱 (비활성 하트용)
+  if(!_emojiCache['__gray_heart__']){
+    const svg=`<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><path fill='#B0B0C4' d='M50 82C50 82 12 55 12 32C12 18 23 8 36 8C43 8 49 12 50 18C51 12 57 8 64 8C77 8 88 18 88 32C88 55 50 82 50 82Z'/><path fill='rgba(255,255,255,0.2)' d='M30 16C30 16 18 22 18 34'/></svg>`;
+    const img=new Image();
+    img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+    _emojiCache['__gray_heart__']=img;
+  }
+
   unitEmojiCache={};const used=new Set();
   for(const w of wordList){
     const em=getEM(w.word,w.ko);
@@ -1307,9 +1321,8 @@ function drawHUD(){
 
   // ── 하트 (우측, 풀컬러) ──
   for(let i=2;i>=0;i--){
-    // 직접 캔버스로 하트 그리기
     const hx=W-12-(2-i)*30,hy=32;
-    drawEmoji(i<hearts?'❤️':'🩶',hx,hy,24);
+    drawEmoji(i<hearts?'❤️':'🤍',hx,hy,24);
   }
 
   ctx.globalAlpha=1; // 버튼 투명도 초기화
@@ -1604,16 +1617,16 @@ Object.assign(EM,{
   'small':'🐜','cheap':'🏷️','voice':'🗣️','library':'📚',
   'work':'💼','short':'📏','long':'↔️','block':'🧱',
   'wish':'🌠','drone':'🚁','okay':'👌',
-  'table':'🍽️','all':'🤲','line':'➖','hiking':'🥾',
+  'table':'🍽️','all':'🌐','line':'📏','hiking':'🥾',
   'cup':'☕','catch':'🫳','favorite':'⭐','beautiful':'🌸',
-  'taller':'📏','season':'🍂','bigger':'🔭','river':'🏞️',
-  'sweater':'🧥','fan':'🌀','thousand':'💯','singer':'🎤',
+  'taller':'↕️','season':'🍂','bigger':'⬆️','river':'🏞️',
+  'sweater':'🧥','fan':'🌀','thousand':'🔢','singer':'🎤',
   'stop':'🛑','eraser':'📝','push':'🛒','glue':'🫙',
   'jump':'🦘','ink':'🖊️','yes':'✅','so':'💬',
   'zoo':'🦁','go':'🚶',
   // issue8: 구체적 수정
   'shoes':'👟','book':'📖','brush':'🪥',
-  'won':'₩','store':'🛒','tape':'📦',
+  'won':'💴','store':'🛒','tape':'📦',
   // 계절/월
   'january':'❄️','february':'💝','march':'🌱','april':'🌸',
   'june':'☀️','july':'🏖️','august':'🌻','september':'🍂',
